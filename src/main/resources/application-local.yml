@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:${LOCAL_DB_BASE}://${LOCAL_DB_SERVER}:${LOCAL_DB_PORT}/${LOCAL_DB_NAME}?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ${LOCAL_DB_USER}
+    password: ${LOCAL_DB_PASSWORD}
+    driver-class-name: ${LOCAL_DRIVER}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${LOCAL_HBM2DDL}
