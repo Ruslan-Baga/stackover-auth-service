@@ -1,5 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/stacover_auth_service
-    username: postgres
-    password: root
+      url: jdbc:${DEV_DB_BASE}://${DEV_DB_SERVER}:${DEV_DB_PORT}/${DEV_DB_NAME}?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: ${DEV_DB_USER}
+      password: ${DEV_DB_PASSWORD}
+      driver-class-name: ${DEV_DRIVER}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${DEV_HBM2DDL}

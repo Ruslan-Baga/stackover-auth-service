@@ -7,8 +7,6 @@ spring:
       enabled: false
   application:
     name: stackover-auth-service
-  profiles:
-    active: dev
   jpa:
     hibernate:
       ddl-auto: none
