@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
 import stackover.auth.service.util.enums.RoleNumEnum;
 
 import javax.persistence.Column;
@@ -20,7 +21,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @ToString
-public class Role {
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -32,5 +33,10 @@ public class Role {
     public Role(Long id, RoleNumEnum name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public String getAuthority() {
+        return String.valueOf(name);
     }
 }
