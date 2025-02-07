@@ -36,6 +36,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/login", "/api/auth/signup").permitAll()
+                .requestMatchers(request -> "true".equals(request.getHeader("From-Gateway"))).permitAll()
                 .anyRequest().authenticated();
     }
     @Bean
