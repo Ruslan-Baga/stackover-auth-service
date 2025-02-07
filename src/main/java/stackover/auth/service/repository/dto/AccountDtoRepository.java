@@ -29,4 +29,5 @@ public interface AccountDtoRepository extends JpaRepository<Account, Long> {
             AND a.role.name = :role
             """)
     boolean existsByIdAndRole(@Param("id") Long id, @Param("role") RoleNumEnum role);
+    boolean existsById(@Param("id") Long accountId);
 }

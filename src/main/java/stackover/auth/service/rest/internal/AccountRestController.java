@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import stackover.auth.service.exception.AccountExistException;
@@ -40,15 +41,28 @@ public class AccountRestController {
 
     @Operation(summary = "Проверка существования аккаунта по id и роли",
             description = "Если аккаунт с заданным id и ролью найден, возвращает true, в противном случае — false")
-    @GetMapping("/{id}/exists")
+    @RequestMapping(value = "/{id}/exists", method = RequestMethod.GET, params = "role")
     public boolean checkExistByIdAndRole(@PathVariable Long id, @RequestParam RoleNumEnum role) {
-        log.info("Запрос на проверку существования аккаунта с id: {} и ролью: {}", id, role);
-        boolean exists = accountDtoService.checkExistByIdAndRole(id, role);
+            log.info("Запрос на проверку существования аккаунта с id: {} и ролью: {}", id, role);
+            boolean exists = accountDtoService.checkExistByIdAndRole(id, role);
         if (exists) {
             log.info("Аккаунт с id {} и ролью {} существует", id, role);
         } else {
             log.warn("Аккаунт с id {} и ролью {} не найден", id, role);
             return accountDtoService.checkExistByIdAndRole(id, role);
+        }
+        return exists;
+    }
+    @Operation(summary = "Проверка существования аккаунта по id",
+            description = "Если аккаунт с заданным id найден, возвращает true, в противном случае — false")
+    @RequestMapping(value = "/{id}/exists", method = RequestMethod.GET)
+    public boolean checkExistByIdAndRole(@PathVariable Long id) {
+        log.info("Запрос на проверку существования аккаунта с id: {}", id);
+        boolean exists = accountDtoService.checkExistById(id);
+        if (exists) {
+            log.info("Аккаунт с id {} существует", id);
+        } else {
+            log.warn("Аккаунт с id {} не найден", id);
         }
         return exists;
     }

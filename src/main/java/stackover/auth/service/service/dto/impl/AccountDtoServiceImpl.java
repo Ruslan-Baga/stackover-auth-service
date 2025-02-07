@@ -25,4 +25,9 @@ public class AccountDtoServiceImpl implements AccountDtoService {
     public boolean checkExistByIdAndRole(Long accountId, RoleNumEnum role) {
         return accountDtoRepository.existsByIdAndRole(accountId, role);
     }
+
+    @Override
+    public boolean checkExistById(Long accountId) {
+        return accountDtoRepository.existsById(accountId);
+    }
 }

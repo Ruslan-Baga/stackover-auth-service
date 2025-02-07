@@ -9,4 +9,6 @@ public interface AccountDtoService {
     Optional<AccountResponseDto> getAccountById(Long id);
 
     boolean checkExistByIdAndRole(Long accountId, RoleNumEnum role);
+    boolean checkExistById(Long accountId);
+
 }
