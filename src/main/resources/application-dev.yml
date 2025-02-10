@@ -8,3 +8,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: ${DEV_HBM2DDL}
+
+JWT_SECRET: ${JWT_SECRET}
